@@ -1,0 +1,29 @@
+
+@use "./variables" as v;
+
+.accordion{
+    margin: 3rem;
+    
+
+
+
+
+    .accordion-item{
+     
+        border: 1px solid;
+  border-image-slice: 1;
+  border-width: 1px;
+  border-image-source: linear-gradient(to left, v.$color3, v.$color4);
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+
+  .accordion-button{
+       color: v.$color2;
+  }
+  
+        
+
+    }
+    
+}

@@ -1,0 +1,58 @@
+@use "../../assets/scss/_variables.scss" as v;
+
+
+
+.topbar {
+    background-color:v.$color1;
+
+     
+    
+    
+
+    .var{
+        display: none;
+
+        @media(max-width: 385px) {
+            display: inline;
+            
+        }
+    }
+
+    
+    
+    a{
+        color:v.$text-color;
+        :active{
+            color: red !important
+        }
+    }
+
+    
+
+    
+    
+    button.navbar-toggler{
+        border: 1px v.$text-color solid ;
+        border-radius: 0;
+        &.show{
+            border: 1px v.$text-color solid ;
+        }
+        
+        --bs-navbar-active-color:red;
+
+        .navbar-toggler-icon{
+            flex: none;
+            opacity: 1;
+        }
+    }
+
+    .dropdown-menu{
+        
+            background-color: v.$color1;
+            border: none;
+            border-radius: 0;
+            
+        
+    }
+
+  }
