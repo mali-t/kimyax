@@ -11,6 +11,7 @@ import Ddunite from "../components/class11/dunite";
 import Funite from "../components/class11/funite";
 import Eunite from "../components/class11/eunite";
 import Toplu from "./topbar-temp";
+import Periodic from "../components/periyodic-table/periodic-table";
 
 const CustomRoute = () => {
   return (
@@ -103,6 +104,14 @@ const CustomRoute = () => {
           />
 
           {/* periyodik tablo */}
+          <Route
+            path="periodik-tablo"
+            element={
+              <Toplu fixus={"sticky"}>
+                <Periodic />
+              </Toplu>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

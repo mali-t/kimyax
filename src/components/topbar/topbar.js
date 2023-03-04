@@ -53,7 +53,9 @@ function Topbar({ fix }) {
                   Bilimsel Gelişmeler
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link>periyodik tablo</Nav.Link>
+              <Nav.Link as={Link} to="/periodik-tablo">
+                periyodik tablo
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
