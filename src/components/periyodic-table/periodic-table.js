@@ -1,20 +1,21 @@
 import React from "react";
 import "./periodic-table.scss";
 import $ from "jquery";
+import data from "./PeriodicTableJSON.json";
 
 const Periodic = () => {
   $(document).ready(function () {
     var props = [
       ["Hydrogen", "H", 1.008, 2, 1, -259.14, -252.87, 1, 1],
-      ["Helium", "He", 4.003, 2, 4, -272.2, -268.928, 1, 18],
+      ["Helium", "He", 4.003, 2, 4, -272.2, -268.93, 1, 18],
       ["Lithium", "Li", 6.94, 0, 0, 180.5, 1330, 2, 1],
       ["Beryllium", "Be", 9.012, 0, 0, 1287, 2469, 2, 2],
       ["Boron", "B", 10.81, 0, 2, 2076, 3927, 2, 13],
       ["Carbon", "C", 12.011, 0, 1, 3550, 4827, 2, 14],
-      ["Nitrogen", "N", 14.007, 2, 1, -210, -195.795, 2, 15],
-      ["Oxygen", "O", 15.999, 2, 1, -218.79, -90.188, 2, 16],
+      ["Nitrogen", "N", 14.007, 2, 1, -210, -195.79, 2, 15],
+      ["Oxygen", "O", 15.999, 2, 1, -218.79, -182.95, 2, 16],
       ["Fluorine", "F", 18.998, 2, 1, -219.67, -188.11, 2, 17],
-      ["Neon", "Ne", 20.18, 2, 4, -248.59, -246.046, 2, 18],
+      ["Neon", "Ne", 20.18, 2, 4, -248.59, -246.08, 2, 18],
       ["Sodium", "Na", 22.99, 0, 0, 97.794, 882.94, 3, 1],
       ["Magnesium", "Mg", 24.305, 0, 0, 650, 1091, 3, 2],
       ["Aluminum", "Al", 26.982, 0, 0, 660.32, 2470, 3, 13],
@@ -22,7 +23,7 @@ const Periodic = () => {
       ["Phosphorus", "P", 30.974, 0, 1, 44.2, 280.5, 3, 15],
       ["Sulfur", "S", 32.06, 0, 1, 115.21, 444.6, 3, 16],
       ["Chlorine", "Cl", 35.45, 2, 1, -101.5, -34.04, 3, 17],
-      ["Argon", "Ar", 39.948, 2, 4, -189.34, -185.848, 3, 18],
+      ["Argon", "Ar", 39.948, 2, 4, -189.34, -185.85, 3, 18],
       ["Potassium", "K", 39.098, 0, 0, 63.5, 759, 4, 1],
       ["Calcium", "Ca", 40.078, 0, 0, 842, 1484, 4, 2],
       ["Scandium", "Sc", 44.956, 0, 0, 1541, 2836, 4, 3],
@@ -40,7 +41,7 @@ const Periodic = () => {
       ["Arsenic", "As", 74.922, 0, 2, 816.8, 603, 4, 15],
       ["Selenium", "Se", 78.971, 0, 1, 221, 685, 4, 16],
       ["Bromine", "Br", 79.904, 1, 1, -7.2, 58.8, 4, 17],
-      ["Krypton", "Kr", 83.798, 2, 4, -157.37, -153.415, 4, 18],
+      ["Krypton", "Kr", 83.798, 2, 4, -157.37, -153.22, 4, 18],
       ["Rubidium", "Rb", 85.469, 0, 0, 39.3, 688, 5, 1],
       ["Strontium", "Sr", 87.62, 0, 0, 777, 1377, 5, 2],
       ["Yttrium", "Y", 88.906, 0, 0, 1526, 2930, 5, 3],
@@ -58,7 +59,7 @@ const Periodic = () => {
       ["Antimony", "Sb", 121.76, 0, 2, 630.63, 1635, 5, 15],
       ["Tellurium", "Te", 127.6, 0, 2, 449.51, 988, 5, 16],
       ["Iodine", "I", 126.904, 0, 1, 113.7, 184.3, 5, 17],
-      ["Xenon", "Xe", 131.293, 2, 4, -111.75, -108.099, 5, 18],
+      ["Xenon", "Xe", 131.293, 2, 4, -111.75, -108.12, 5, 18],
       ["Cesium", "Cs", 132.905, 0, 0, 28.5, 671, 6, 1],
       ["Barium", "Ba", 137.327, 0, 0, 727, 1845, 6, 2],
       ["Lanthanum", "La", 138.905, 0, 0, 920, 3464, 6, "Lanthanides"],
@@ -150,15 +151,14 @@ const Periodic = () => {
       }
     }
 
-    function findelectron(x) {
-      if (x <= 2) {
-        return `${x}`;
-      } else if (x <= 10) {
-        return `2 ${x - 2}`;
-      } else if (x <= 18) {
-        return `2 8 ${x - 10}`;
-      } else if (x <= 10) {
-        return `2 ${x - 2}`;
+    function getElementConfiguration(elementNumber) {
+      const element = data.elements.find(
+        (el) => el.number === parseInt(elementNumber)
+      );
+      if (element) {
+        return element.element_configuration;
+      } else {
+        return "Element not found";
       }
     }
 
@@ -171,7 +171,7 @@ const Periodic = () => {
       $("#mass").text(props[num][2]);
       $("#proton").text(num + 1);
       $("#neutron").text(Math.round(props[num][2]) - (num + 1));
-      $("#electron").text("");
+      $("#electron").text(getElementConfiguration(num + 1));
       $("#state").text(getState(props[num][3]));
       $("#type").text(getType(props[num][4]));
       if (props[num][5] == "Bilinmiyor") {
@@ -230,7 +230,7 @@ const Periodic = () => {
               Tipi: <span id="type"></span>
             </li>
             <li>
-              elektron dizilimi: <span id="number"></span>
+              elektron dizilimi: <span id="electron"></span>
             </li>
             <li>
               Kaynama noktası:<span id="number"></span>
@@ -243,445 +243,448 @@ const Periodic = () => {
 
       <div id="container">
         <div id="middle">
-          <table>
-            <tr id="period1">
-              <td id="1" class="element">
-                H
-              </td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td id="2" class="element">
-                He
-              </td>
-            </tr>
-            <tr id="period2">
-              <td id="3" class="element">
-                Li
-              </td>
-              <td id="4" class="element">
-                Be
-              </td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td id="5" class="element">
-                B
-              </td>
-              <td id="6" class="element">
-                C
-              </td>
-              <td id="7" class="element">
-                N
-              </td>
-              <td id="8" class="element">
-                O
-              </td>
-              <td id="9" class="element">
-                F
-              </td>
-              <td id="10" class="element">
-                Ne
-              </td>
-            </tr>
-            <tr id="period3">
-              <td id="11" class="element">
-                Na
-              </td>
-              <td id="12" class="element">
-                Mg
-              </td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td id="13" class="element">
-                Al
-              </td>
-              <td id="14" class="element">
-                Si
-              </td>
-              <td id="15" class="element">
-                P
-              </td>
-              <td id="16" class="element">
-                S
-              </td>
-              <td id="17" class="element">
-                Cl
-              </td>
-              <td id="18" class="element">
-                Ar
-              </td>
-            </tr>
-            <tr id="period4">
-              <td id="19" class="element">
-                K
-              </td>
-              <td id="20" class="element">
-                Ca
-              </td>
-              <td id="21" class="element">
-                Sc
-              </td>
-              <td id="22" class="element">
-                Ti
-              </td>
-              <td id="23" class="element">
-                V
-              </td>
-              <td id="24" class="element">
-                Cr
-              </td>
-              <td id="25" class="element">
-                Mn
-              </td>
-              <td id="26" class="element">
-                Fe
-              </td>
-              <td id="27" class="element">
-                Co
-              </td>
-              <td id="28" class="element">
-                Ni
-              </td>
-              <td id="29" class="element">
-                Cu
-              </td>
-              <td id="30" class="element">
-                Zn
-              </td>
-              <td id="31" class="element">
-                Ga
-              </td>
-              <td id="32" class="element">
-                Ge
-              </td>
-              <td id="33" class="element">
-                As
-              </td>
-              <td id="34" class="element">
-                Se
-              </td>
-              <td id="35" class="element">
-                Br
-              </td>
-              <td id="36" class="element">
-                Kr
-              </td>
-            </tr>
-            <tr id="period5">
-              <td id="37" class="element">
-                Rb
-              </td>
-              <td id="38" class="element">
-                Sr
-              </td>
-              <td id="39" class="element">
-                Y
-              </td>
-              <td id="40" class="element">
-                Zr
-              </td>
-              <td id="41" class="element">
-                Nb
-              </td>
-              <td id="42" class="element">
-                Mo
-              </td>
-              <td id="43" class="element">
-                Tc
-              </td>
-              <td id="44" class="element">
-                Ru
-              </td>
-              <td id="45" class="element">
-                Rh
-              </td>
-              <td id="46" class="element">
-                Pd
-              </td>
-              <td id="47" class="element">
-                Ag
-              </td>
-              <td id="48" class="element">
-                Cd
-              </td>
-              <td id="49" class="element">
-                In
-              </td>
-              <td id="50" class="element">
-                Sn
-              </td>
-              <td id="51" class="element">
-                Sb
-              </td>
-              <td id="52" class="element">
-                Te
-              </td>
-              <td id="53" class="element">
-                I
-              </td>
-              <td id="54" class="element">
-                Xe
-              </td>
-            </tr>
-            <tr id="period6">
-              <td id="55" class="element">
-                Cs
-              </td>
-              <td id="56" class="element">
-                Ba
-              </td>
-              <td id="57" class="element">
-                La
-              </td>
-              <td id="72" class="element">
-                Hf
-              </td>
-              <td id="73" class="element">
-                Ta
-              </td>
-              <td id="74" class="element">
-                W
-              </td>
-              <td id="75" class="element">
-                Re
-              </td>
-              <td id="76" class="element">
-                Os
-              </td>
-              <td id="77" class="element">
-                Ir
-              </td>
-              <td id="78" class="element">
-                Pt
-              </td>
-              <td id="79" class="element">
-                Au
-              </td>
-              <td id="80" class="element">
-                Hg
-              </td>
-              <td id="81" class="element">
-                Tl
-              </td>
-              <td id="82" class="element">
-                Pb
-              </td>
-              <td id="83" class="element">
-                Bi
-              </td>
-              <td id="84" class="element">
-                Po
-              </td>
-              <td id="85" class="element">
-                At
-              </td>
-              <td id="86" class="element">
-                Rn
-              </td>
-            </tr>
-            <tr id="period7">
-              <td id="87" class="element">
-                Fr
-              </td>
-              <td id="88" class="element">
-                Ra
-              </td>
-              <td id="89" class="element">
-                Ac
-              </td>
-              <td id="104" class="element">
-                Rf
-              </td>
-              <td id="105" class="element">
-                Db
-              </td>
-              <td id="106" class="element">
-                Sg
-              </td>
-              <td id="107" class="element">
-                Bh
-              </td>
-              <td id="108" class="element">
-                Hs
-              </td>
-              <td id="109" class="element">
-                Mt
-              </td>
-              <td id="110" class="element">
-                Ds
-              </td>
-              <td id="111" class="element">
-                Rg
-              </td>
-              <td id="112" class="element">
-                Cn
-              </td>
-              <td id="113" class="element">
-                Nh
-              </td>
-              <td id="114" class="element">
-                Fl
-              </td>
-              <td id="115" class="element">
-                Mc
-              </td>
-              <td id="116" class="element">
-                Lv
-              </td>
-              <td id="117" class="element">
-                Ts
-              </td>
-              <td id="118" class="element">
-                Og
-              </td>
-            </tr>
-            <tr id="emptyline">
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-              <td class="space"></td>
-            </tr>
-            <tr id="lanthanides">
-              <td class="space"></td>
-              <td class="space"></td>
-              <td id="58" class="element">
-                Ce
-              </td>
-              <td id="59" class="element">
-                Pr
-              </td>
-              <td id="60" class="element">
-                Nd
-              </td>
-              <td id="61" class="element">
-                Pm
-              </td>
-              <td id="62" class="element">
-                Sm
-              </td>
-              <td id="63" class="element">
-                Eu
-              </td>
-              <td id="64" class="element">
-                Gd
-              </td>
-              <td id="65" class="element">
-                Tb
-              </td>
-              <td id="66" class="element">
-                Dy
-              </td>
-              <td id="67" class="element">
-                Ho
-              </td>
-              <td id="68" class="element">
-                Er
-              </td>
-              <td id="69" class="element">
-                Tm
-              </td>
-              <td id="70" class="element">
-                Yb
-              </td>
-              <td id="71" class="element">
-                Lu
-              </td>
-              <td class="space"></td>
-              <td class="space"></td>
-            </tr>
-            <tr id="actinides">
-              <td class="space"></td>
-              <td class="space"></td>
+          <div className="kaydir">
+            <table>
+              <tr id="period1">
+                <td id="1" class="element">
+                  H
+                </td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td id="2" class="element">
+                  He
+                </td>
+              </tr>
+              <tr id="period2">
+                <td id="3" class="element">
+                  Li
+                </td>
+                <td id="4" class="element">
+                  Be
+                </td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td id="5" class="element">
+                  B
+                </td>
+                <td id="6" class="element">
+                  C
+                </td>
+                <td id="7" class="element">
+                  N
+                </td>
+                <td id="8" class="element">
+                  O
+                </td>
+                <td id="9" class="element">
+                  F
+                </td>
+                <td id="10" class="element">
+                  Ne
+                </td>
+              </tr>
+              <tr id="period3">
+                <td id="11" class="element">
+                  Na
+                </td>
+                <td id="12" class="element">
+                  Mg
+                </td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td id="13" class="element">
+                  Al
+                </td>
+                <td id="14" class="element">
+                  Si
+                </td>
+                <td id="15" class="element">
+                  P
+                </td>
+                <td id="16" class="element">
+                  S
+                </td>
+                <td id="17" class="element">
+                  Cl
+                </td>
+                <td id="18" class="element">
+                  Ar
+                </td>
+              </tr>
+              <tr id="period4">
+                <td id="19" class="element">
+                  K
+                </td>
+                <td id="20" class="element">
+                  Ca
+                </td>
+                <td id="21" class="element">
+                  Sc
+                </td>
+                <td id="22" class="element">
+                  Ti
+                </td>
+                <td id="23" class="element">
+                  V
+                </td>
+                <td id="24" class="element">
+                  Cr
+                </td>
+                <td id="25" class="element">
+                  Mn
+                </td>
+                <td id="26" class="element">
+                  Fe
+                </td>
+                <td id="27" class="element">
+                  Co
+                </td>
+                <td id="28" class="element">
+                  Ni
+                </td>
+                <td id="29" class="element">
+                  Cu
+                </td>
+                <td id="30" class="element">
+                  Zn
+                </td>
+                <td id="31" class="element">
+                  Ga
+                </td>
+                <td id="32" class="element">
+                  Ge
+                </td>
+                <td id="33" class="element">
+                  As
+                </td>
+                <td id="34" class="element">
+                  Se
+                </td>
+                <td id="35" class="element">
+                  Br
+                </td>
+                <td id="36" class="element">
+                  Kr
+                </td>
+              </tr>
+              <tr id="period5">
+                <td id="37" class="element">
+                  Rb
+                </td>
+                <td id="38" class="element">
+                  Sr
+                </td>
+                <td id="39" class="element">
+                  Y
+                </td>
+                <td id="40" class="element">
+                  Zr
+                </td>
+                <td id="41" class="element">
+                  Nb
+                </td>
+                <td id="42" class="element">
+                  Mo
+                </td>
+                <td id="43" class="element">
+                  Tc
+                </td>
+                <td id="44" class="element">
+                  Ru
+                </td>
+                <td id="45" class="element">
+                  Rh
+                </td>
+                <td id="46" class="element">
+                  Pd
+                </td>
+                <td id="47" class="element">
+                  Ag
+                </td>
+                <td id="48" class="element">
+                  Cd
+                </td>
+                <td id="49" class="element">
+                  In
+                </td>
+                <td id="50" class="element">
+                  Sn
+                </td>
+                <td id="51" class="element">
+                  Sb
+                </td>
+                <td id="52" class="element">
+                  Te
+                </td>
+                <td id="53" class="element">
+                  I
+                </td>
+                <td id="54" class="element">
+                  Xe
+                </td>
+              </tr>
+              <tr id="period6">
+                <td id="55" class="element">
+                  Cs
+                </td>
+                <td id="56" class="element">
+                  Ba
+                </td>
+                <td id="57" class="element">
+                  La
+                </td>
+                <td id="72" class="element">
+                  Hf
+                </td>
+                <td id="73" class="element">
+                  Ta
+                </td>
+                <td id="74" class="element">
+                  W
+                </td>
+                <td id="75" class="element">
+                  Re
+                </td>
+                <td id="76" class="element">
+                  Os
+                </td>
+                <td id="77" class="element">
+                  Ir
+                </td>
+                <td id="78" class="element">
+                  Pt
+                </td>
+                <td id="79" class="element">
+                  Au
+                </td>
+                <td id="80" class="element">
+                  Hg
+                </td>
+                <td id="81" class="element">
+                  Tl
+                </td>
+                <td id="82" class="element">
+                  Pb
+                </td>
+                <td id="83" class="element">
+                  Bi
+                </td>
+                <td id="84" class="element">
+                  Po
+                </td>
+                <td id="85" class="element">
+                  At
+                </td>
+                <td id="86" class="element">
+                  Rn
+                </td>
+              </tr>
+              <tr id="period7">
+                <td id="87" class="element">
+                  Fr
+                </td>
+                <td id="88" class="element">
+                  Ra
+                </td>
+                <td id="89" class="element">
+                  Ac
+                </td>
+                <td id="104" class="element">
+                  Rf
+                </td>
+                <td id="105" class="element">
+                  Db
+                </td>
+                <td id="106" class="element">
+                  Sg
+                </td>
+                <td id="107" class="element">
+                  Bh
+                </td>
+                <td id="108" class="element">
+                  Hs
+                </td>
+                <td id="109" class="element">
+                  Mt
+                </td>
+                <td id="110" class="element">
+                  Ds
+                </td>
+                <td id="111" class="element">
+                  Rg
+                </td>
+                <td id="112" class="element">
+                  Cn
+                </td>
+                <td id="113" class="element">
+                  Nh
+                </td>
+                <td id="114" class="element">
+                  Fl
+                </td>
+                <td id="115" class="element">
+                  Mc
+                </td>
+                <td id="116" class="element">
+                  Lv
+                </td>
+                <td id="117" class="element">
+                  Ts
+                </td>
+                <td id="118" class="element">
+                  Og
+                </td>
+              </tr>
+              <tr id="emptyline">
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+                <td class="space"></td>
+              </tr>
+              <tr id="lanthanides">
+                <td class="space"></td>
+                <td class="space"></td>
+                <td id="58" class="element">
+                  Ce
+                </td>
+                <td id="59" class="element">
+                  Pr
+                </td>
+                <td id="60" class="element">
+                  Nd
+                </td>
+                <td id="61" class="element">
+                  Pm
+                </td>
+                <td id="62" class="element">
+                  Sm
+                </td>
+                <td id="63" class="element">
+                  Eu
+                </td>
+                <td id="64" class="element">
+                  Gd
+                </td>
+                <td id="65" class="element">
+                  Tb
+                </td>
+                <td id="66" class="element">
+                  Dy
+                </td>
+                <td id="67" class="element">
+                  Ho
+                </td>
+                <td id="68" class="element">
+                  Er
+                </td>
+                <td id="69" class="element">
+                  Tm
+                </td>
+                <td id="70" class="element">
+                  Yb
+                </td>
+                <td id="71" class="element">
+                  Lu
+                </td>
+                <td class="space"></td>
+                <td class="space"></td>
+              </tr>
+              <tr id="actinides">
+                <td class="space"></td>
+                <td class="space"></td>
 
-              <td id="90" class="element">
-                Th
-              </td>
-              <td id="91" class="element">
-                Pa
-              </td>
-              <td id="92" class="element">
-                U
-              </td>
-              <td id="93" class="element">
-                Np
-              </td>
-              <td id="94" class="element">
-                Pu
-              </td>
-              <td id="95" class="element">
-                Am
-              </td>
-              <td id="96" class="element">
-                Cm
-              </td>
-              <td id="97" class="element">
-                Bk
-              </td>
-              <td id="98" class="element">
-                Cf
-              </td>
-              <td id="99" class="element">
-                Es
-              </td>
-              <td id="100" class="element">
-                Fm
-              </td>
-              <td id="101" class="element">
-                Md
-              </td>
-              <td id="102" class="element">
-                No
-              </td>
-              <td id="103" class="element">
-                Lr
-              </td>
-              <td class="space"></td>
-              <td class="space"></td>
-            </tr>
-          </table>
+                <td id="90" class="element">
+                  Th
+                </td>
+                <td id="91" class="element">
+                  Pa
+                </td>
+                <td id="92" class="element">
+                  U
+                </td>
+                <td id="93" class="element">
+                  Np
+                </td>
+                <td id="94" class="element">
+                  Pu
+                </td>
+                <td id="95" class="element">
+                  Am
+                </td>
+                <td id="96" class="element">
+                  Cm
+                </td>
+                <td id="97" class="element">
+                  Bk
+                </td>
+                <td id="98" class="element">
+                  Cf
+                </td>
+                <td id="99" class="element">
+                  Es
+                </td>
+                <td id="100" class="element">
+                  Fm
+                </td>
+                <td id="101" class="element">
+                  Md
+                </td>
+                <td id="102" class="element">
+                  No
+                </td>
+                <td id="103" class="element">
+                  Lr
+                </td>
+                <td class="space"></td>
+                <td class="space"></td>
+              </tr>
+            </table>
+          </div>
+
           <br />
           <br />
           <p>
@@ -689,90 +692,6 @@ const Periodic = () => {
             <a href="http://www.ptable.com/" target="_blank">
               http://www.ptable.com/
             </a>
-          </p>
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione
-            suscipit praesentium tempora dolorum velit, cupiditate animi
-            quisquam quasi odio quo autem rem minima nam, sunt, et aperiam fugit
-            optio. Excepturi ea nostrum blanditiis suscipit ab, voluptatum totam
-            voluptates debitis quo incidunt. Assumenda molestias sed commodi
-            nostrum molestiae inventore eos, corrupti voluptatem aliquam iusto
-            cum cumque, facere est sunt deserunt, similique accusantium
-            aspernatur? Voluptatibus non, doloribus necessitatibus voluptatem
-            quia ab facilis ipsum rerum qui, beatae iusto nemo eveniet! Rem,
-            repellendus voluptates. Ad provident labore numquam, neque debitis
-            nihil quaerat temporibus ullam adipisci impedit molestias
-            repellendus esse consequuntur eos, ipsa nulla dolores? Quae rem
-            minus illo placeat cumque sunt obcaecati animi corrupti deserunt
-            possimus, modi sint qui excepturi quis dolores sit nesciunt
-            consectetur veritatis nobis eveniet repellendus atque itaque. Fugit
-            maiores soluta repellat perspiciatis modi obcaecati excepturi in
-            unde placeat blanditiis tempore, ut ea a laboriosam sequi sed
-            aliquam. Corporis, nulla repellat voluptatibus ipsam praesentium
-            amet animi reiciendis facere repudiandae! Tempora quo doloribus
-            fuga, distinctio deleniti explicabo veniam exercitationem dolor,
-            molestiae, odit dignissimos aliquam cumque harum debitis? Vero quia
-            necessitatibus enim veniam deserunt sit cupiditate quidem cumque
-            non. Deleniti optio corporis mollitia suscipit magnam totam iusto a,
-            fugit facilis vero quas debitis ea eaque voluptatibus inventore
-            vitae vel ratione voluptates consequatur repellendus, repellat
-            repudiandae dicta reprehenderit? Possimus eaque inventore id
-            mollitia aspernatur doloremque blanditiis ab excepturi temporibus
-            accusantium eos odio vitae, est veniam dolorum labore vel molestiae
-            esse architecto. Natus quibusdam ipsam neque voluptate explicabo
-            autem cumque. Quia ab quod blanditiis error reiciendis ullam
-            aspernatur fuga ut placeat est rerum sequi at veniam ex ipsam
-            dolorem officia iste unde, praesentium similique. Dolorum obcaecati
-            dolor nostrum dolorem laboriosam dicta sunt repellat alias magnam
-            officia? Molestias ipsam molestiae exercitationem, distinctio
-            soluta, totam sapiente ducimus fuga deleniti cumque dolore id atque
-            deserunt incidunt sit assumenda modi rerum iure harum labore quae
-            sequi nisi? Dolorem magnam, facere unde error praesentium sapiente
-            et labore sint suscipit quibusdam explicabo veritatis soluta cum eum
-            exercitationem libero vel non hic? Reiciendis distinctio blanditiis
-            aliquid, ipsa quam ex vero fugiat soluta eaque optio possimus
-            excepturi rem obcaecati, ullam odit illum hic consequatur ipsum quis
-            voluptatibus ut dolores pariatur. Eaque atque beatae cum repudiandae
-            doloremque itaque, earum eligendi. Dolore soluta hic, consectetur
-            eligendi laborum nesciunt eveniet debitis numquam, temporibus
-            molestias amet voluptate voluptatem officiis sunt accusamus delectus
-            adipisci maiores fuga doloribus pariatur libero. Nam culpa, tempore
-            vitae praesentium adipisci dolores molestias quam animi similique
-            omnis maiores, velit officia mollitia tempora ratione quidem ipsa
-            perspiciatis dolorem ad, labore natus veritatis eos. Quisquam
-            repudiandae explicabo, natus debitis delectus ipsa dolore nesciunt
-            fuga illo libero eligendi aliquid nulla vero totam ducimus
-            assumenda, ratione aut officia laboriosam, qui voluptatibus
-            accusamus! Assumenda optio facilis temporibus modi possimus, earum
-            iusto laboriosam dicta ad aliquam aspernatur sunt molestias numquam
-            natus. Distinctio minus incidunt, soluta et facilis culpa ad? Quasi
-            quam corrupti culpa voluptatem accusantium unde neque adipisci optio
-            minus temporibus! Ad a consectetur provident? Quod, nulla mollitia.
-            Dolorum a, iste obcaecati optio ea porro facilis ipsam tenetur,
-            voluptatibus harum fugit non vel, expedita eum quibusdam quos aut
-            accusantium adipisci? Corporis pariatur nostrum quae voluptatem?
-            Veritatis omnis nemo consequuntur harum, quia quaerat iste
-            repudiandae, dolores quis facilis sed quidem aut dolorum blanditiis
-            et aperiam labore tempora fugit cumque voluptatibus? Quos, nostrum!
-            Nesciunt possimus quod veritatis reiciendis explicabo doloremque
-            exercitationem excepturi mollitia in necessitatibus officiis, harum
-            unde distinctio dolore. Mollitia, sit. Odit commodi suscipit
-            similique impedit! Quasi voluptatem molestias laboriosam maxime,
-            harum, unde eaque dolores amet exercitationem velit mollitia numquam
-            quo aperiam aliquam? Nesciunt, quibusdam debitis? Amet labore
-            facilis quia modi. Id cum enim non odit laudantium voluptates modi
-            reiciendis provident corporis optio placeat molestiae tempore,
-            corrupti quis et eos aperiam perferendis voluptate vitae fuga. Rerum
-            vel minima distinctio quas commodi aliquam soluta explicabo natus
-            fugit amet laboriosam enim eos doloremque deserunt voluptatibus,
-            dicta cum saepe ut optio fugiat inventore necessitatibus repellendus
-            ad ab. Earum temporibus vel pariatur. Blanditiis saepe
-            exercitationem vero voluptate sit facere ex dolor soluta beatae
-            labore sed cupiditate ea non, fugit sapiente nostrum alias provident
-            voluptas vitae assumenda quibusdam? Qui debitis repellendus fuga
-            veniam perferendis ea non alias fugit. Tenetur sint quas, temporibus
-            consequuntur veritatis quam id minima amet atque, perferendis
-            pariatur aliquid incidunt corrupti sed distinctio.
           </p>
         </div>
       </div>

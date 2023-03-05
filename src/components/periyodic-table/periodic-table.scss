@@ -25,13 +25,20 @@ nav.periot{
     background-color: #e28f76;
     margin-top: 2rem;
 
+    @media(max-width:550px){
+      height: 200px;
+    width: 100vw;
+    border: black solid 1.5px;
+    }
+
     .logos{
       flex: 2;
       position: relative;
-      
-      
       text-align: center;
       justify-content: center;
+
+      
+
       #symbol{
         font-size: 3rem;
         
@@ -39,8 +46,11 @@ nav.periot{
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-30%,-50%);
+        transform: translate(-27%,-50%);
         text-align: center;
+        @media(max-width:550px){
+          
+        }
       }
 
       #number{
@@ -48,7 +58,9 @@ nav.periot{
         bottom: 0;
         left: 0;
         transform: translate(1rem,-1rem);
-        
+        @media(max-width:550px){
+          transform: translate(1rem,-1rem);
+        }
 
 
       }
@@ -57,6 +69,7 @@ nav.periot{
         top: 0;
         left: 0;
         transform: translate(1rem,1rem);
+        
       }
       #neutron{
         position: absolute;
@@ -69,6 +82,7 @@ nav.periot{
     .right{
       position: relative;
       flex: 5;
+      
       ul{
         position: absolute;
         top: 50%;
@@ -76,6 +90,7 @@ nav.periot{
         
 
         list-style: none;
+        
       }
     }
   }
@@ -110,6 +125,15 @@ nav.periot{
     width:10vw;
     padding: 2px;
     margin: 4px;
+
+    
+
+    &.element{
+      @media(max-width :850px){
+      padding: 10px;;
+     
+    }
+    }
   }
   
   .element {
@@ -156,7 +180,10 @@ nav.periot{
   
   #container {
     display: table;
-    margin: 2rem;
+    
+    table{
+      margin: 2rem;
+    }
   }
   
   #left, #middle, #right {
@@ -172,3 +199,12 @@ nav.periot{
     width: 100%;
   }
 }
+
+.kaydir{
+  @media(max-width :850px){
+    overflow-x: scroll; /* Yalnızca dikey kaydırmayı etkinleştirir */
+  height: 500px; /* Kaydırılabilir bölgenin yüksekliği */
+  width: 100vw; /* Kaydırılabilir bölgenin genişliği */
+}
+  }
+  
