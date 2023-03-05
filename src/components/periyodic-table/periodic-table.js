@@ -2,6 +2,7 @@ import React from "react";
 import "./periodic-table.scss";
 import $ from "jquery";
 import data from "./PeriodicTableJSON.json";
+import Element from "../../Element";
 
 const Periodic = () => {
   $(document).ready(function () {
@@ -151,17 +152,6 @@ const Periodic = () => {
       }
     }
 
-    function getElementConfiguration(elementNumber) {
-      const element = data.elements.find(
-        (el) => el.number === parseInt(elementNumber)
-      );
-      if (element) {
-        return element.element_configuration;
-      } else {
-        return "Element not found";
-      }
-    }
-
     function displayProperties(num) {
       // Update the properties column
       num -= 1;
@@ -171,7 +161,7 @@ const Periodic = () => {
       $("#mass").text(props[num][2]);
       $("#proton").text(num + 1);
       $("#neutron").text(Math.round(props[num][2]) - (num + 1));
-      $("#electron").text(getElementConfiguration(num + 1));
+      $("#electron").text(Element(num + 1));
       $("#state").text(getState(props[num][3]));
       $("#type").text(getType(props[num][4]));
       if (props[num][5] == "Bilinmiyor") {
