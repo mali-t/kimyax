@@ -1,8 +1,6 @@
 import React from "react";
 import "./periodic-table.scss";
 import $ from "jquery";
-import data from "./PeriodicTableJSON.json";
-import Element from "../../Element";
 
 const Periodic = () => {
   $(document).ready(function () {
@@ -161,7 +159,7 @@ const Periodic = () => {
       $("#mass").text(props[num][2]);
       $("#proton").text(num + 1);
       $("#neutron").text(Math.round(props[num][2]) - (num + 1));
-      $("#electron").text(Element(num + 1));
+      $("#electron").text("");
       $("#state").text(getState(props[num][3]));
       $("#type").text(getType(props[num][4]));
       if (props[num][5] == "Bilinmiyor") {
@@ -220,7 +218,7 @@ const Periodic = () => {
               Tipi: <span id="type"></span>
             </li>
             <li>
-              elektron dizilimi: <span id="electron"></span>
+              elektron dizilimi: <span id=""></span>
             </li>
             <li>
               Kaynama noktası:<span id="number"></span>
