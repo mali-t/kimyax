@@ -1,9 +1,13 @@
-import React from "react";
+// eslint-disable-next-line
+import React, { useEffect, useState } from "react";
 import "./periodic-table.scss";
 import $ from "jquery";
-
 const Periodic = () => {
   $(document).ready(function () {
+    // eslint-disable-next-line
+
+    // eslint-disable-next-line
+
     var props = [
       ["Hydrogen", "H", 1.008, 2, 1, -259.14, -252.87, 1, 1],
       ["Helium", "He", 4.003, 2, 4, -272.2, -268.93, 1, 18],
@@ -128,24 +132,24 @@ const Periodic = () => {
     function getState(x) {
       if (x === 0) {
         return "katı";
-      } else if (x == 1) {
+      } else if (x === 1) {
         return "sıvı";
-      } else if (x == 2) {
+      } else if (x === 2) {
         return "gaz";
-      } else if (x == 3) {
+      } else if (x === 3) {
         return "bilinmiyor";
       }
     }
     function getType(x) {
       if (x === 0) {
         return "Metal";
-      } else if (x == 1) {
+      } else if (x === 1) {
         return "Ametal";
-      } else if (x == 2) {
+      } else if (x === 2) {
         return "Yarı Metal";
-      } else if (x == 3) {
+      } else if (x === 3) {
         return "Bilinmiyor";
-      } else if (x == 4) {
+      } else if (x === 4) {
         return "Soygaz";
       }
     }
@@ -157,24 +161,33 @@ const Periodic = () => {
       $("#symbol").text(props[num][1]);
       $("#number").text(num + 1);
       $("#mass").text(props[num][2]);
-      $("#proton").text(num + 1);
+
       $("#neutron").text(Math.round(props[num][2]) - (num + 1));
-      $("#electron").text("");
+
       $("#state").text(getState(props[num][3]));
       $("#type").text(getType(props[num][4]));
-      if (props[num][5] == "Bilinmiyor") {
+      if (props[num][5] === "Bilinmiyor") {
         $("#melt").text("Bilinmiyor");
       } else {
         $("#melt").text(props[num][5] + " °C");
       }
-      if (props[num][6] == "Bilinmiyor") {
+      if (props[num][6] === "Bilinmiyor") {
         $("#boil").text("Bilinmiyor");
       } else {
         $("#boil").text(props[num][6] + " °C");
       }
       $("#period").text(props[num][7]);
       $("#group").text(props[num][8]);
-      $("#ion").text(props[num][8]);
+      $("#ion").text(
+        "data.elements[num].electronegativity_pauling" && " bilinmiyor"
+      );
+      $("#proton").text(
+        "data.elements[num].electron_affinity" && " bilinmiyor"
+      );
+
+      $("#electron").text(
+        "data.elements[num].electron_configuration_semantic" && "bilinmiyor"
+      );
     }
     $(".element").click(function () {
       $(".element").removeClass("hoverhighlight");
@@ -192,9 +205,38 @@ const Periodic = () => {
     });
   });
 
+  // Load the elements of the periodic table
+  // JSON data is provided by the Periodic Table JSON GitHub Repo
+  // https://github.com/Bowserinator/Periodic-Table-JSON
+
+  let aste = 2;
+  let asil = "h";
+
+  /*  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      fetch(
+        "https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON/master/PeriodicTableJSON.json"
+      )
+        .then((response) => {
+          if (response.ok && response.status == 200) {
+            return response.json();
+          }
+        })
+        .then((data) => setData(data))
+        .catch((err) => console.log(err));
+    }, 1000);
+  }, []); */
+
   return (
     <nav className="periot">
       <h2>Daha fazla bilgi için bir elemente tıklayın!</h2>
+      {/*  */}
+      <div>
+        <label>Country :</label>
+        <p>{}</p>
+      </div>{" "}
       {/*  */}
       <div className="infox">
         <div className="logos">
@@ -218,17 +260,18 @@ const Periodic = () => {
               Tipi: <span id="type"></span>
             </li>
             <li>
-              elektron dizilimi: <span id=""></span>
+              elektron dizilimi: <span id="electron"></span>
             </li>
             <li>
-              Kaynama noktası:<span id="number"></span>
+              elektronegatifliği:<span id="ion"></span>
+            </li>
+            <li>
+              elektron ilgisi:<span id="proton"></span>
             </li>
           </ul>
         </div>
       </div>
-
       {/*  */}
-
       <div id="container">
         <div id="middle">
           <div className="kaydir">
@@ -674,12 +717,11 @@ const Periodic = () => {
           </div>
 
           <br />
+
           <br />
           <p>
             Information found at:{" "}
-            <a href="http://www.ptable.com/" target="_blank">
-              http://www.ptable.com/
-            </a>
+            <a href="http://www.ptable.com/">http://www.ptable.com/</a>
           </p>
         </div>
       </div>
