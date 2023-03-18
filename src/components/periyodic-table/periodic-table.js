@@ -3,6 +3,26 @@ import React, { useEffect, useState } from "react";
 import "./periodic-table.scss";
 import $ from "jquery";
 const Periodic = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      fetch(
+        "https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON/master/PeriodicTableJSON.json"
+      )
+        .then((response) => {
+          if (response.ok && response.status == 200) {
+            return response.json();
+          }
+        })
+        .then((data) => setData([data.elements][0]))
+
+        .catch((err) => console.log(err));
+    }, 1000);
+  }, []);
+
+  const dizi = data;
+
   $(document).ready(function () {
     // eslint-disable-next-line
 
@@ -154,9 +174,14 @@ const Periodic = () => {
       }
     }
 
+    // Load the elements of the periodic table
+    // JSON data is provided by the Periodic Table JSON GitHub Repo
+    // https://github.com/Bowserinator/Periodic-Table-JSON
+
     function displayProperties(num) {
       // Update the properties column
       num -= 1;
+
       $("#name").text(props[num][0]);
       $("#symbol").text(props[num][1]);
       $("#number").text(num + 1);
@@ -178,16 +203,10 @@ const Periodic = () => {
       }
       $("#period").text(props[num][7]);
       $("#group").text(props[num][8]);
-      $("#ion").text(
-        "data.elements[num].electronegativity_pauling" && " bilinmiyor"
-      );
-      $("#proton").text(
-        "data.elements[num].electron_affinity" && " bilinmiyor"
-      );
+      $("#ion").text(dizi[num].electronegativity_pauling || "yok");
+      $("#proton").text(dizi[num].electron_affinity || "yok");
 
-      $("#electron").text(
-        "data.elements[num].electron_configuration_semantic" && "bilinmiyor"
-      );
+      $("#electron").text(dizi[num].electron_configuration_semantic || "yok");
     }
     $(".element").click(function () {
       $(".element").removeClass("hoverhighlight");
@@ -205,39 +224,24 @@ const Periodic = () => {
     });
   });
 
-  // Load the elements of the periodic table
-  // JSON data is provided by the Periodic Table JSON GitHub Repo
-  // https://github.com/Bowserinator/Periodic-Table-JSON
-
-  let aste = 2;
-  let asil = "h";
-
-  /*  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch(
-        "https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON/master/PeriodicTableJSON.json"
-      )
-        .then((response) => {
-          if (response.ok && response.status == 200) {
-            return response.json();
-          }
-        })
-        .then((data) => setData(data))
-        .catch((err) => console.log(err));
-    }, 1000);
-  }, []); */
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <nav className="periot">
       <h2>Daha fazla bilgi için bir elemente tıklayın!</h2>
-      {/*  */}
-      <div>
-        <label>Country :</label>
-        <p>{}</p>
-      </div>{" "}
-      {/*  */}
+
       <div className="infox">
         <div className="logos">
           <span id="symbol" className="ilk"></span>

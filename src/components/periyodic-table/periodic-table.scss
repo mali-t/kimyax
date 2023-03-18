@@ -15,8 +15,8 @@ nav.periot{
 
 
   .infox{
-    height: 10rem;
-    width: 25rem;
+    height: 14rem;
+    width: 40rem;
     border: black solid 3px;
     display:flex;
     justify-content: center;
@@ -25,7 +25,7 @@ nav.periot{
     background-color: #e28f76;
     margin-top: 2rem;
 
-    @media(max-width:550px){
+    @media(max-width:40rem){
       height: 200px;
     width: 100vw;
     border: black solid 1.5px;
