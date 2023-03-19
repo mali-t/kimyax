@@ -5,15 +5,32 @@ import "../../assets/scss/formuls.scss";
 const Ddunite = () => {
   return (
     <Accordion defaultActiveKey="0" alwaysOpen>
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Accordion Item #1</Accordion.Header>
+      <Accordion.Item eventKey="04">
+        <Accordion.Header>Tepkime Entalpisi</Accordion.Header>
         <Accordion.Body>
-          <img src="../../assets/img/araba1.jpg" alt="" />
+          <img src={require("../../assets/img/enta.PNG")} alt="" />
         </Accordion.Body>
       </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>Accordion Item #2</Accordion.Header>
-        <Accordion.Body>jjj</Accordion.Body>
+
+      <Accordion.Item eventKey="05">
+        <Accordion.Header>Endotermik Tepkime</Accordion.Header>
+        <Accordion.Body>
+          <img src={require("../../assets/img/endo.PNG")} alt="" />
+        </Accordion.Body>
+      </Accordion.Item>
+
+      <Accordion.Item eventKey="07">
+        <Accordion.Header>Ekzotermik Tepkime</Accordion.Header>
+        <Accordion.Body>
+          <img src={require("../../assets/img/ekzo2.PNG")} alt="" />
+        </Accordion.Body>
+      </Accordion.Item>
+
+      <Accordion.Item eventKey="008">
+        <Accordion.Header>Hess Yasası</Accordion.Header>
+        <Accordion.Body>
+          <img src={require("../../assets/img/hess.PNG")} alt="" />
+        </Accordion.Body>
       </Accordion.Item>
     </Accordion>
   );

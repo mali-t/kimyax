@@ -6,14 +6,16 @@ const Aunite = () => {
   return (
     <Accordion defaultActiveKey="0" alwaysOpen>
       <Accordion.Item eventKey="0">
-        <Accordion.Header>Accordion Item #1</Accordion.Header>
+        <Accordion.Header>Pil Potansiyeli</Accordion.Header>
         <Accordion.Body>
-          <img src="../../assets/img/araba1.jpg" alt="" />
+          <img src={require("../../assets/img/pot.PNG")} alt="" />
         </Accordion.Body>
       </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>Accordion Item #2</Accordion.Header>
-        <Accordion.Body>jjj</Accordion.Body>
+      <Accordion.Item eventKey="0jkhgcfdxs">
+        <Accordion.Header>Faraday Kanunu</Accordion.Header>
+        <Accordion.Body>
+          <img src="https://kimyaogren.com/uploads/2021/11/99.jpg" alt="" />
+        </Accordion.Body>
       </Accordion.Item>
     </Accordion>
   );

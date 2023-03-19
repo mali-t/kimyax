@@ -1,6 +1,8 @@
 
 @use "./variables" as v;
 
+nav.acten{max-width: 100vw;}
+
 .accordion{
     margin: 3rem;
     
@@ -19,11 +21,48 @@
   border-top: 0;
 
   .accordion-button{
-       color: v.$color2;
+       color: v.$color1;
   }
+  .el{
+    font-size: 2rem;
+ }
   
         
 
     }
     
 }
+.cucuk{
+   width: auto;
+    height: auto;
+ }
+img{
+   max-width: 80%;
+ width: auto;
+ height: auto;
+ 
+ @media(max-width:"700px") {
+    width: 70vw;
+    height: auto;
+ }
+
+ 
+ 
+
+}
+
+
+
+/* 
+www.eokultv.com *
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEK2wgfN0N9ELAWUoO5Ime-pyyY8Dt6twFWQ&usqp=CAU
+kimyaakademi.com
+https://slideplayer.biz.tr/slide/10555663/33/images/7/Manometreler+A%C3%A7%C4%B1k+u%C3%A7lu+manometre+ile+gaz+bas%C4%B1nc%C4%B1n%C4%B1n+%C3%B6l%C3%A7%C3%BClmesi.jpg
+alonot
+kimyaogren.com
+
+
+
+
+
+*/

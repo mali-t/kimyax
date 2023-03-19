@@ -17,6 +17,15 @@ const CustomRoute = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route
+          path=""
+          element={
+            <Toplu>
+              <Aaunite />
+            </Toplu>
+          }
+        />
+
         <Route path="/">
           {/* 12. sınıf */}
           <Route
@@ -90,7 +99,7 @@ const CustomRoute = () => {
             path="11-5"
             element={
               <Toplu>
-                <Funite />
+                <Eunite />
               </Toplu>
             }
           />
@@ -98,7 +107,7 @@ const CustomRoute = () => {
             path="11-6"
             element={
               <Toplu>
-                <Eunite />
+                <Funite />
               </Toplu>
             }
           />

@@ -8,7 +8,9 @@ function Topbar({ fix }) {
     <nav className="top">
       <Navbar fixed={fix} expand="md" className="topbar">
         <Container fluid>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/ ">
+            Kimyax
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
             className="mr-auto justify-content-end"
@@ -46,11 +48,8 @@ function Topbar({ fix }) {
                   3. Ünite: Organik Bileşikler
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/12-4">
-                  4. Ünite: Enerji Kaynakları ve{" "}
-                  <span className="var">
-                    <br />
-                  </span>
-                  Bilimsel Gelişmeler
+                  4. Ünite: Enerji Kaynakları <br />
+                  ve Bilimsel Gelişmeler
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link as={Link} to="/periodik-tablo">

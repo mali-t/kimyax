@@ -6,14 +6,40 @@ const Eunite = () => {
   return (
     <Accordion defaultActiveKey="0" alwaysOpen>
       <Accordion.Item eventKey="0">
-        <Accordion.Header>Accordion Item #1</Accordion.Header>
+        <Accordion.Header>Tepkime Hızı</Accordion.Header>
         <Accordion.Body>
-          <img src="../../assets/img/araba1.jpg" alt="" />
+          <img
+            src="      https://www.eokultv.com/wp-content/uploads/2018/09/Screenshot_13.jpg    "
+            alt=""
+          />
         </Accordion.Body>
       </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>Accordion Item #2</Accordion.Header>
-        <Accordion.Body>jjj</Accordion.Body>
+      <Accordion.Item eventKey="066">
+        <Accordion.Header>Homojen Tepkime</Accordion.Header>
+        <Accordion.Body>
+          <img
+            src="      https://www.eokultv.com/wp-content/uploads/2018/09/Screenshot_18.jpg    "
+            alt=""
+          />
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="088">
+        <Accordion.Header>Heterojen Tepkime</Accordion.Header>
+        <Accordion.Body>
+          <img
+            src="       https://www.eokultv.com/wp-content/uploads/2018/09/Screenshot_19.jpg   "
+            alt=""
+          />
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="044">
+        <Accordion.Header>Ana Denklem</Accordion.Header>
+        <Accordion.Body>
+          <img
+            src="      https://www.eokultv.com/wp-content/uploads/2018/09/Screenshot_24.jpg    "
+            alt=""
+          />
+        </Accordion.Body>
       </Accordion.Item>
     </Accordion>
   );
