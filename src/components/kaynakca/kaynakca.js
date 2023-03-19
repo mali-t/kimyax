@@ -1,8 +1,13 @@
 import React from "react";
+import "./kaynakca.scss";
 
 const Kaynakca = () => {
   return (
-    <nav>
+    <nav className="kaynak ">
+      {" "}
+      <br />
+      <h2>Kodlar için ayrıca teşekkürler</h2>
+      <br />
       <div>
         <a href="https://eokultv.com ">www.eokultv.com </a>
       </div>
@@ -21,16 +26,19 @@ const Kaynakca = () => {
       <div>
         <a href="https://kimyaogren.com/">www.kimyaogren.com</a>
       </div>
+      <br />
+      <h2>Thanks for codes</h2>
+      <br />
       <div>
         <a href="http://www.ptable.com/">www.ptable.com/</a>
       </div>
       <div>
-        <a
-          href="https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON/master/PeriodicTableJSON.json
-"
-        >
-          https://raw.githubusercontent.com/Bowserinator/Periodic-Table-JSON/master/PeriodicTableJSON.json
+        <a href="https://github.com/Bowserinator/Periodic-Table-JSON">
+          Periyodik tablonun json dosyası
         </a>
+      </div>
+      <div>
+        <a href="https://codepen.io/1r2y3a/pen/amRoOq">Ryan</a>
       </div>
     </nav>
   );
