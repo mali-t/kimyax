@@ -12,6 +12,7 @@ import Funite from "../components/class11/funite";
 import Eunite from "../components/class11/eunite";
 import Toplu from "./topbar-temp";
 import Periodic from "../components/periyodic-table/periodic-table";
+import Kaynakca from "../components/kaynakca/kaynakca";
 
 const CustomRoute = () => {
   return (
@@ -41,6 +42,14 @@ const CustomRoute = () => {
             element={
               <Toplu>
                 <Bunite />
+              </Toplu>
+            }
+          />
+          <Route
+            path="kaynakca"
+            element={
+              <Toplu>
+                <Kaynakca />
               </Toplu>
             }
           />

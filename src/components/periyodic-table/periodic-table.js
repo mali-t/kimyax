@@ -727,10 +727,6 @@ const Periodic = () => {
               <br />
 
               <br />
-              <p>
-                Information found at:{" "}
-                <a href="http://www.ptable.com/">http://www.ptable.com/</a>
-              </p>
             </div>
           </div>
         </nav>
