@@ -6,7 +6,7 @@ const Kaynakca = () => {
     <nav className="kaynak ">
       {" "}
       <br />
-      <h2>Kaynaklarınız için teşekkürler</h2>
+      <h2>Çevrimiçi kaynaklarınız için teşekkürler</h2>
       <br />
       <div>
         <a href="https://eokultv.com ">www.eokultv.com </a>
