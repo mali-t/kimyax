@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion } from "react-bootstrap";
+import { Accordion, Container } from "react-bootstrap";
 import "../../assets/scss/formuls.scss";
 
 const Bbunite = () => {

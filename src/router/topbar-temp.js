@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import Footbar from "../components/tfootbar/footbar";
 import Topbar from "../components/topbar/topbar";
 
@@ -7,6 +8,7 @@ const Toplu = ({ children }, fixus) => {
     <>
       <Topbar fix={fixus} />
       {children}
+
       <Footbar />
     </>
   );

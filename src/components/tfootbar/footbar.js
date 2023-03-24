@@ -13,7 +13,9 @@ const Footbar = () => {
     return (
       <div className="foooot">
         <span onClick={dest}>X</span> Kimyax projesinin
-        <a href="kaynakca"> kaynakçalarına</a> teşekkürler
+        <a href="kaynakca"> kaynakçalarına</a> <br className="var-y" />{" "}
+        teşekkürler <br />
+        Copyright © 2023 Mehmet Ali Tunç
       </div>
     );
   }

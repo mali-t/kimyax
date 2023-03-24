@@ -15,12 +15,15 @@ nav.periot{
 
 
   .infox{
+    position: sticky;
+    top: 0;
     height: 14rem;
     width: 40rem;
     border: black solid 3px;
     display:flex;
     justify-content: center;
     margin: 0 auto;
+    
   
     background-color: #e28f76;
     margin-top: 2rem;
@@ -37,11 +40,15 @@ nav.periot{
       text-align: center;
       justify-content: center;
 
+      span{
+        color: v.$color-white;
+      }
+
       
 
       #symbol{
         font-size: 3rem;
-        
+        color: black;
         padding: 1.5rem;
         position: absolute;
         top: 50%;
@@ -90,6 +97,14 @@ nav.periot{
         
 
         list-style: none;
+
+        li{
+
+          span{
+
+            color: v.$color-white;
+          }
+        }
         
       }
     }
@@ -154,7 +169,8 @@ nav.periot{
   }
   
   .hoverhighlight {
-    opacity: 0.8;
+    opacity: 1;
+    background-color: rgba(255, 255, 0, 0.726) !important;
   }
   #\32,#\31\30,#\31\31\38,#\35\34,#\38\36, #\33\36, #\31\38{
     color: red;
