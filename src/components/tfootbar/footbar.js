@@ -12,10 +12,15 @@ const Footbar = () => {
   } else {
     return (
       <div className="foooot">
-        <span onClick={dest}>X</span> Kimyax projesinin
-        <a href="kaynakca"> kaynakçalarına</a> <br className="var-y" />{" "}
-        teşekkürler <br />
-        Copyright © 2023 Mehmet Ali Tunç
+        <span className="bixi2">
+          Kimyax projesinin<a href="kaynakca"> kaynakçalarına</a>{" "}
+          <br className="var-y" />
+          teşekkürler <br />
+          Copyright © 2023 Mehmet Ali Tunç
+        </span>
+        <span onClick={dest} className="bixi">
+          X
+        </span>
       </div>
     );
   }

@@ -1,25 +1,41 @@
 div.foooot{
-    text-align: center;
-    font-size: 1rem;
+    display: flex;
+    text-align: left;
+    font-size: 24px;
     text-decoration: none;
-    padding: 2rem;
+    padding: 5px;
     background-color: rgb(233, 233, 233);
     position: fixed;
     bottom: 0;
-    display: inline;
+   
     width: 100vw;
 
-    span{
+    
+    @media(max-width:520px){
+        font-size: 20px;
         
-        position: absolute;
-        top:50%;
-        transform: translateY(-50%);
-        left: 1.4rem;
-        font-size: 2rem;
+    }
+    .bixi{
+        display: flex;
+  justify-content: center;
+  align-items: center;
+        flex: 1;
+        
+        
+        font-size: 45px;
         font-weight: 600;
-        margin-right: 4px;
-        color: rgb(207, 48, 48);
+        color: rgb(207, 48, 48); 
+        padding: 3px;
+        margin-left: 3px;
+        border: 1px solid rgb(201, 112, 112);
+       
 
+    }
+    .bixi2{
+         display: inline;
+         text-align: center;
+        flex: 19;
+       
     }
 
     .var-y{
@@ -30,5 +46,21 @@ div.foooot{
         
     }
 
+    a{
+        color: rgb(73, 219, 219);
+        
+    }
+
     
 }
+
+/* 
+ display: flex;
+    
+        
+        
+        left: 1.4rem;
+        margin-right: 4px;
+        font-size: 45px;
+        font-weight: 600;
+        color: rgb(207, 48, 48); */
