@@ -271,10 +271,10 @@ const Periodic = () => {
                   elektron dizilimi: <span id="electron"></span>
                 </li>
                 <li>
-                  elektronegatifliği:<span id="ion"></span>
+                  elektronegatifliği: <span id="ion"></span>
                 </li>
                 <li>
-                  elektron ilgisi:<span id="proton"></span>
+                  elektron ilgisi: <span id="proton"></span>
                 </li>
               </ul>
             </div>
